@@ -1,3 +1,8 @@
+"""
+This train code is changed from Wandel et Al.
+https://github.com/wandeln/Unsupervised_Deep_Learning_of_Incompressible_Fluid_Dynamics
+"""
+
 import numpy as np
 import torch
 from torch.optim import Adam
@@ -12,7 +17,6 @@ def toCpu(x):
 	if type(x) is tuple:
 		return [xi.detach().cpu() for xi in x]
 	return x.detach().cpu()
-
 
 # Hyper-parameters
 n_epochs = 60
