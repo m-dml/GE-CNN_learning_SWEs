@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from torch.optim import Adam
 from net_work import get_Net
-from PDE_setups import CNN_dataset
+from PDE_setups import GE_CNN_dataset
 
 def toCuda(x):
 	if type(x) is tuple:
@@ -33,7 +33,7 @@ model.train()
 optimizer = Adam(model.parameters(), lr=0.001)
 
 # initialize Dataset
-dataset = CNN_dataset(nx, nx_u, dx, dt, cd, g, wimp, batch_size=100, dataset_size=5000, average_sequence_length=5000)
+dataset = GE_CNN_dataset(nx, nx_u, dx, dt, cd, g, wimp, batch_size=100, dataset_size=5000, average_sequence_length=5000)
 
 def loss_function(x):
     return torch.pow(x,2)

@@ -6,7 +6,7 @@ import torch
 
 ###########################################
 # generate indices for 1D mirror reflection
-# special for ksize = 7
+# special ksize = 6 for u, ksize = 7 for z
 ###########################################
 def make_m2_z1_indices_z(ksize):
     generate_inds = torch.tensor([[[0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6]],

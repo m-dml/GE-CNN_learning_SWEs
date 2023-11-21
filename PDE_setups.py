@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-class CNN_dataset:
+class GE_CNN_dataset:
     def __init__(self, nx, nx_u, dx, dt, cd, g, wimp, batch_size=100, dataset_size=1000, average_sequence_length=5000):
         self.nx = nx
         self.nx_u = nx_u

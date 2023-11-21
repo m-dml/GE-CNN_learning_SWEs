@@ -2,7 +2,6 @@
 Parts of the U-Net model by Ronneberger et Al.
 taken from: https://github.com/milesial/Pytorch-UNet/blob/master/unet/unet_parts.py
 """
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -54,7 +53,6 @@ class Down(pl.LightningModule):
 	def __init__(self, in_channels, out_channels):
 		super().__init__()
 		self.conv1 = DoubleConv(in_channels, out_channels)
-
 	def forward(self, x):
 		out = plane_group_spatial_max_pooling(x, 2, 2)
 		out = self.conv1(out)
@@ -64,7 +62,6 @@ class Up1(pl.LightningModule):
 	"""Upscaling then double conv"""
 	def __init__(self, in_channels, out_channels, trilinear=True):
 		super().__init__()
-
 		# if trilinear, use the normal convolutions to reduce the number of channels
 		if trilinear:
 			# self.up = nn.Upsample(scale_factor=2, mode='nearest')
@@ -86,7 +83,6 @@ class Up1(pl.LightningModule):
 
 #################################
 class Up2(pl.LightningModule):
-	"""Upscaling then double conv"""
 	def __init__(self, in_channels, out_channels, trilinear=True):
 		super().__init__()
 		if trilinear:
@@ -100,7 +96,6 @@ class Up2(pl.LightningModule):
 		# input is CHW
 		diffY = x2.size()[2] - x1.size()[2]
 		diffX = x2.size()[3] - x1.size()[3]
-
 		x1 = F.pad(x1, [diffX // 2, diffX - diffX // 2,
 						diffY // 2, diffY - diffY // 2])
 		x = torch.cat([x2, x1], dim=1)
@@ -108,7 +103,6 @@ class Up2(pl.LightningModule):
 
 class Up3(pl.LightningModule):
 	"""Upscaling then double conv"""
-
 	def __init__(self, in_channels, out_channels, trilinear=True):
 		super().__init__()
 
@@ -118,7 +112,6 @@ class Up3(pl.LightningModule):
 		else:
 			self.up = nn.ConvTranspose2d(in_channels , in_channels // 2, kernel_size=2, stride=2)
 			self.conv = DoubleConv(in_channels, out_channels)
-
 	def forward(self, x1, x2):
 		x1 = self.up(x1)
 		# input is CHW
@@ -130,10 +123,8 @@ class Up3(pl.LightningModule):
 		x = torch.cat([x2, x1], dim=1)
 		return self.conv(x)
 
-#################################
 class Up4(pl.LightningModule):
 	"""Upscaling then double conv"""
-
 	def __init__(self, in_channels, out_channels, trilinear=True):
 		super().__init__()
 		if trilinear:
@@ -142,12 +133,10 @@ class Up4(pl.LightningModule):
 		else:
 			self.up = nn.ConvTranspose2d(in_channels , in_channels // 2, kernel_size=2, stride=2)
 			self.conv = DoubleConv(in_channels, out_channels)
-
 	def forward(self, x1, x2):
 		x1 = self.up(x1)
 		diffY = x2.size()[2] - x1.size()[2]
 		diffX = x2.size()[3] - x1.size()[3]
-
 		x1 = F.pad(x1, [diffX // 2, diffX - diffX // 2,
 						diffY // 2, diffY - diffY // 2])
 		x = torch.cat([x2, x1], dim=1)
