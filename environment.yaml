@@ -1,4 +1,4 @@
-name: gpu-hackathon
+name: learning_PDE
 channels:
   - pytorch
   - nvidia
