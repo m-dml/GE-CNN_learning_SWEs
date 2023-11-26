@@ -9,7 +9,7 @@ Create a new Conda-environment:
  conda env create -f environment.yaml
 ```
 
-## Train a model for 1D Shallow Water Equations
+## Train a model for 1D Shallow Water Equations with Gaussian bells ICs
 
 ```bash
 python train.py
