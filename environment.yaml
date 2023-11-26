@@ -427,4 +427,4 @@ dependencies:
       - phiflow==2.5.0
       - phiml==1.0.3
       - torch-tb-profiler==0.4.1
-prefix: /gpfs/home/huangy1/miniconda3/envs/gpu-hackathon
+prefix: /gpfs/home/huangy1/miniconda3/envs/learning_PDE
