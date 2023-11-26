@@ -8,3 +8,9 @@ Create a new Conda-environment:
 ```bash
  conda env create -f environment.yaml
 ```
+
+## Train a model for 1D Shallow Water Equations
+
+```bash
+python train.py
+```
