@@ -4,3 +4,7 @@ This pytorch code shows how to train a deep neural network model for solving PDE
 
 ## Installation
 Create a new Conda-environment:
+
+```bash
+ conda env create -f environment.yaml
+```
